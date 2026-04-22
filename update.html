@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Update Listing</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <div class="logo">Pass<span>ItOn</span></div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="add.html">Add Listing</a>
+            <a href="edit.html" class="active">Edit Listing</a>
+            <a href="admin.html">Admin</a>
+            <a href="categories.html">Categories</a>
+        </nav>
+    </header>
+
+    <main>
+        <a href="edit.html" class="back-link">← Back to listings</a>
+        <h1>Update Listing</h1>
+        <p class="subtitle">Make your changes below and hit Save.</p>
+
+        <section class="form-card">
+            <h2>Update Details</h2>
+            <div class="form-grid">
+                <div class="full">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" placeholder="Listing title" />
+                </div>
+                <div class="full">
+                    <label for="description">Description</label>
+                    <textarea id="description" placeholder="Describe the item"></textarea>
+                </div>
+                <div>
+                    <label for="price">Price (€)</label>
+                    <input type="number" id="price" placeholder="e.g. 50" />
+                </div>
+                <div>
+                    <label for="category">Category</label>
+                    <select id="category"></select>
+                </div>
+                <div class="full">
+                    <label for="image-url">Image URL</label>
+                    <input type="text" id="image-url" placeholder="https://..." />
+                </div>
+            </div>
+            <div class="form-actions">
+                <a href="edit.html" class="btn-outline">Cancel</a>
+                <button class="btn-primary" onclick="updateListing()">Save Changes</button>
+            </div>
+            <p id="status-message"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 PassItOn</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = 'https://mhqwyntjmpzqkncovbru.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ocXd5bnRqbXB6cWtuY292YnJ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3MjU2NjEsImV4cCI6MjA5MDMwMTY2MX0.9oD58IZlQp14ewDGGbBKMoTZg1rDKOg0ijkxhTcC9Dk';
+        const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    </script>
+    <script src="update.js"></script>
+</body>
+</html>
