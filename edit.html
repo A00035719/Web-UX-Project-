@@ -7,65 +7,36 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
     <header>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="add.html">Add Listing</a>
-        <a href="edit.html">Edit Listing</a>
-        <a href="admin.html">Admin</a>
-        <a href="categories.html">Categories</a>
-    </nav>
+        <div class="logo">Pass<span>ItOn</span></div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="add.html">Add Listing</a>
+            <a href="edit.html" class="active">Edit Listing</a>
+            <a href="admin.html">Admin</a>
+            <a href="categories.html">Categories</a>
+        </nav>
     </header>
 
     <main>
-    <h1>Edit Listing</h1>
+        <h1>Edit a Listing</h1>
+        <p class="subtitle">Select an item below to edit its details.</p>
 
-    <!-- Step 1: Search for a listing by ID or title -->
-    <section id="search-section">
-        <label for="listing-id">Enter Listing ID to Edit:</label>
-        <input type="text" id="listing-id" placeholder="e.g. 3" />
-        <button onclick="fetchListing()">Find Listing</button>
-    </section>
-
-    <!-- Step 2: Form pre-populated with existing data -->
-    <section id="edit-form-section" style="display:none;">
-        <h2>Update Details</h2>
-
-        <label for="title">Title:</label>
-        <input type="text" id="title" placeholder="Listing title" />
-
-        <label for="description">Description:</label>
-        <textarea id="description" placeholder="Describe the item"></textarea>
-
-        <label for="price">Price (€):</label>
-        <input type="number" id="price" placeholder="e.g. 50" />
-
-        <label for="category">Category:</label>
-        <select id="category">
-        <!-- Options loaded from Supabase dynamically -->
-        </select>
-
-        <label for="image-url">Image URL:</label>
-        <input type="text" id="image-url" placeholder="https://..." />
-
-        <button onclick="updateListing()">Save Changes</button>
-        <p id="status-message"></p>
-    </section>
+        <div id="listings-grid" class="listings-grid">
+            <p id="loading-msg">Loading listings...</p>
+        </div>
     </main>
 
     <footer>
-    <p>&copy; 2026 PassItOn</p>
+        <p>&copy; 2026 PassItOn</p>
     </footer>
 
-    <!-- Supabase CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         const SUPABASE_URL = 'https://mhqwyntjmpzqkncovbru.supabase.co';
-        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ocXd5bnRqbXB6cWtuY292YnJ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3MjU2NjEsImV4cCI6MjA5MDMwMTY2MX0.9oD58IZlQp14ewDGGbBKMoTZg1rDKOg0ijkxhTcC9Dk'; // ← long key here
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ocXd5bnRqbXB6cWtuY292YnJ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3MjU2NjEsImV4cCI6MjA5MDMwMTY2MX0.9oD58IZlQp14ewDGGbBKMoTZg1rDKOg0ijkxhTcC9Dk';
         const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     </script>
     <script src="edit.js"></script>
-
 </body>
 </html>
