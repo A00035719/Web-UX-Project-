@@ -1,32 +1,25 @@
-const tbody = document.querySelector('#listings-table tbody');
+const db = window.db;
 
 async function loadListings() {
-  const { data, error } = await db
-    .from('listings')
-    .select('id, title, price')
-    .order('created_at', { ascending: false });
+  const tbody = document.querySelector("#listings-table tbody");
 
-  tbody.innerHTML = '';
+  const { data, error } = await db.from("listings").select("*");
+
+  tbody.innerHTML = "";
 
   if (error) {
-    tbody.innerHTML = '<tr><td colspan="4">Error loading listings</td></tr>';
-    console.error(error);
+    tbody.innerHTML = "<tr><td>Error</td></tr>";
     return;
   }
 
-  if (!data || data.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="4">No listings found</td></tr>';
-    return;
-  }
-
-  data.forEach(listing => {
-    const row = document.createElement('tr');
+  data.forEach(item => {
+    const row = document.createElement("tr");
 
     row.innerHTML = `
-      <td>${listing.id}</td>
-      <td>${listing.title}</td>
-      <td>$${listing.price}</td>
-      <td><button onclick="deleteListing('${listing.id}')">Delete</button></td>
+      <td>${item.id}</td>
+      <td>${item.title}</td>
+      <td>${item.price}</td>
+      <td><button onclick="deleteListing('${item.id}')">Delete</button></td>
     `;
 
     tbody.appendChild(row);
@@ -34,19 +27,7 @@ async function loadListings() {
 }
 
 async function deleteListing(id) {
-  if (!confirm("Are you sure you want to delete this listing?")) return;
-
-  const { error } = await db
-    .from('listings')
-    .delete()
-    .eq('id', id);
-
-  if (error) {
-    alert("Error deleting listing");
-    console.error(error);
-    return;
-  }
-
+  await db.from("listings").delete().eq("id", id);
   loadListings();
 }
 
