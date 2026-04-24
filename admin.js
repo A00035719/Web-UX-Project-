@@ -1,18 +1,20 @@
+const tbody = document.querySelector('#listings-table tbody');
+
 async function loadListings() {
   const { data, error } = await db
     .from('listings')
     .select('id, title, price')
     .order('created_at', { ascending: false });
 
-  const tbody = document.querySelector('#listings-table tbody');
   tbody.innerHTML = '';
 
-  if (error || !data) {
+  if (error) {
     tbody.innerHTML = '<tr><td colspan="4">Error loading listings</td></tr>';
+    console.error(error);
     return;
   }
 
-  if (data.length === 0) {
+  if (!data || data.length === 0) {
     tbody.innerHTML = '<tr><td colspan="4">No listings found</td></tr>';
     return;
   }
@@ -24,9 +26,7 @@ async function loadListings() {
       <td>${listing.id}</td>
       <td>${listing.title}</td>
       <td>$${listing.price}</td>
-      <td>
-        <button onclick="deleteListing(${listing.id})">Delete</button>
-      </td>
+      <td><button onclick="deleteListing('${listing.id}')">Delete</button></td>
     `;
 
     tbody.appendChild(row);
@@ -34,8 +34,7 @@ async function loadListings() {
 }
 
 async function deleteListing(id) {
-  const confirmDelete = confirm("Are you sure you want to delete this listing?");
-  if (!confirmDelete) return;
+  if (!confirm("Are you sure you want to delete this listing?")) return;
 
   const { error } = await db
     .from('listings')
@@ -44,10 +43,10 @@ async function deleteListing(id) {
 
   if (error) {
     alert("Error deleting listing");
+    console.error(error);
     return;
   }
 
-  alert("Listing deleted!");
   loadListings();
 }
 
