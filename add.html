@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Listing</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">Pass<span>ItOn</span></div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="add.html" class="active">Add Listing</a>
+        <a href="edit.html">Edit Listing</a>
+        <a href="admin.html">Admin</a>
+        <a href="categories.html">Categories</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Add Listing</h1>
+    <p class="subtitle">Add a new item</p>
+
+    <div class="form-card">
+        <form id="add-form">
+            <div class="form-grid">
+
+                <div>
+                    <label>Title</label>
+                    <input type="text" id="title" required>
+                </div>
+
+                <div>
+                    <label>Price</label>
+                    <input type="number" id="price" required>
+                </div>
+
+                <div class="full">
+                    <label>Description</label>
+                    <textarea id="description"></textarea>
+                </div>
+
+                <div class="full">
+                    <label>Image URL</label>
+                    <input type="text" id="image">
+                </div>
+
+                <div class="full">
+                    <label>Category</label>
+                    <select id="category"></select>
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Add Listing</button>
+            </div>
+        </form>
+
+        <p id="status" class="status"></p>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2026 PassItOn</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const db = window.supabase.createClient(
+  "https://mhqwyntjmpzqkncovbru.supabase.co",
+  "PASTE_YOUR_ANON_KEY"
+);
+</script>
+<script src="add.js"></script>
+
+</body>
+</html>
