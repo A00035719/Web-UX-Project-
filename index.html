@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home - PassItOn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PassItOn - Home</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,10 +20,62 @@
 </header>
 
 <main>
-    <h1>Browse Listings</h1>
-    <p class="subtitle">Find items people are passing on.</p>
+    <section class="hero">
+        <h1>Give items a second life</h1>
+        <p class="subtitle">
+            PassItOn is a simple community marketplace where users can list unwanted items,
+            browse available products, and help reduce waste by passing useful items on to others.
+        </p>
 
-    <div id="listings-grid" class="listings-grid"></div>
+        <div class="hero-actions">
+            <a href="add.html" class="btn-primary">Add a Listing</a>
+            <a href="categories.html" class="btn-outline">Browse Categories</a>
+        </div>
+    </section>
+
+    <section class="form-card">
+        <h2>How PassItOn Works</h2>
+
+        <div class="info-grid">
+            <div class="info-box">
+                <h3>1. Add an Item</h3>
+                <p>Users can create a listing with a title, price, description, image and category.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>2. Browse Listings</h3>
+                <p>Visitors can view available items and search through different categories.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>3. Update Details</h3>
+                <p>Listings can be edited if the price, image, description or category changes.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>4. Remove Items</h3>
+                <p>Items can be deleted when they are no longer available.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-card home-section">
+        <h2>Why Use PassItOn?</h2>
+        <p class="home-text">
+            Many useful items are thrown away even though someone else could use them.
+            PassItOn helps people share, sell or give away items locally. The website supports
+            create, read, update and delete functionality using a Supabase database.
+        </p>
+    </section>
+
+    <section class="form-card home-section">
+        <h2>Featured Listings</h2>
+        <p class="subtitle">Recently added items from the database.</p>
+
+        <div id="listings-grid" class="listings-grid">
+            <p id="loading-msg">Loading listings...</p>
+        </div>
+    </section>
 </main>
 
 <footer>
@@ -31,10 +84,10 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const db = window.supabase.createClient(
-  "https://mhqwyntjmpzqkncovbru.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ocXd5bnRqbXB6cWtuY292YnJ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3MjU2NjEsImV4cCI6MjA5MDMwMTY2MX0.9oD58IZlQp14ewDGGbBKMoTZg1rDKOg0ijkxhTcC9Dk"
-);
+    const SUPABASE_URL = "https://mhqwyntjmpzqkncovbru.supabase.co";
+    const SUPABASE_KEY = "YOUR_ANON_KEY_HERE";
+
+    const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 </script>
 <script src="index.js"></script>
 
